@@ -29,8 +29,10 @@ mush <- function(...) {
   out <- vector("list", length(n.id))
   names(out) <- letters[seq_len(length(listies))]
   for (i in seq_along(out))  {
-    nas <- rep(NA_character_, length(resultants))
-    nas[unlist(n.id[[i]])] <- letters[i]
+
+    nas <- rep(NA_integer_, length(resultants))
+    nas[unlist(n.id[[i]])] <- rep(which(lengths(n.id[[i]]) > 0), lengths(n.id[[i]]))
+
     out[[i ]] <- nas
   }
   out <- tibble::as_tibble(out)
